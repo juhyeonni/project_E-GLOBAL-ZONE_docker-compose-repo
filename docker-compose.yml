@@ -19,6 +19,17 @@ services:
       - mysql
     networks:
       - laravel
+    
+  web:
+    build:
+      context: src/E_Global_Zone-Web
+      dockerfile: Dockerfile
+    container_name: web
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    networks:
+      - laravel
 
   mysql:
     image: mysql:5.7.26
@@ -26,7 +37,7 @@ services:
     restart: unless-stopped
     tty: true
     ports:
-      - "4306:3306"
+      - "3306:3306"
     volumes:
       - ./mysql:/var/lib/mysql:z
     environment:
@@ -43,14 +54,19 @@ services:
 
   php:
     build:
-      context: .
+      context: src/E_Global_Zone
       dockerfile: Dockerfile
     container_name: php
     volumes:
       - ./src:/var/www/html:z
     environment:
       TZ: "Asia/Seoul"
+      MYSQL_DATABASE: e_global_zone
+      MYSQL_USER: "oic_yju"
+      MYSQL_PASSWORD: "oic_yju"
     ports:
       - "9000:9000"
+    depends_on:
+      - mysql
     networks:
       - laravel
