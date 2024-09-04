@@ -1,0 +1,6 @@
+[submodule "src/E_Global_Zone"]
+	path = src/E_Global_Zone
+	url = https://github.com/juhyeonni/project_E-GLOBAL-ZONE_laravel-deployment-repo
+[submodule "src/E_Global_Zone-Web"]
+	path = src/E_Global_Zone-Web
+	url = https://github.com/juhyeonni/project_E-GLOBAL-react-deployment-repo
